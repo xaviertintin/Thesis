@@ -1,0 +1,51 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: uwsgi-config
+  namespace: {{ .Release.Namespace }}
+data:
+  uwsgi.ini: |
+    [uwsgi]
+    stats = /tmp/stats.socket
+    http = 0.0.0.0:5000
+    module = invenio_app.wsgi:application
+    master = true
+    processes = {{ .Values.components.reana_server.uwsgi.processes }}
+    threads = {{ .Values.components.reana_server.uwsgi.threads }}
+    enable-threads = true
+    single-interpreter = true
+    need-app = true
+    vacuum = true
+    wsgi-disable-file-wrapper = true
+
+    auto-procname = true
+    buffer-size =  10240
+    post-buffering = true
+    lazy-apps = true
+    # thunder-lock = true # https://marc.info/?l=uwsgi&m=140473636200986&w=2
+                          # https://uwsgi-docs.readthedocs.io/en/latest/articles/SerializingAccept.html
+
+    # Logging
+    {{- if not .Values.components.reana_server.uwsgi.log_all }}
+    disable-logging = true
+    log-4xx = {{ .Values.components.reana_server.uwsgi.log_4xx }}
+    log-5xx = {{ .Values.components.reana_server.uwsgi.log_5xx }}
+    {{- end }}
+
+    # Workers management
+    max-requests = 1999
+    max-requests-delta = 149
+    # max-worker-lifetime = 3600 # https://github.com/unbit/uwsgi/issues/1894
+    reload-on-rss = 250
+
+    # fix up signal handling
+    die-on-term = true
+    hook-master-start = unix_signal:2 gracefully_kill_them_all
+    hook-master-start = unix_signal:15 gracefully_kill_them_all
+
+    # enable keepalive to avoid 500/502 from traefik
+    http-keepalive = 1
+
+    # fix uWSGI memory consumption on systems with very high fs.nr_open limits
+    max-fd = 1048576
