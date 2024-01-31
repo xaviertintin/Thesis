@@ -1,0 +1,23 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: mongodb-backup-cronjob
+spec:
+  schedule: "0 7-23/2 * * *" # A las 7, 9, 11, ..., 23 horas
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: mongodb-backup
+              image: mongo:latest
+              command: ["mongodump"]
+              args: ["--uri=mongodb://mongo-db:27017/collect", "--out=/backup"]
+              volumeMounts:
+                - name: backup-volume
+                  mountPath: /backup
+          volumes:
+            - name: backup-volume
+              persistentVolumeClaim:
+                claimName: mongo-backup-pvc
+          restartPolicy: OnFailure
