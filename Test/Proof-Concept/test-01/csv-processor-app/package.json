@@ -1,0 +1,9 @@
+{
+  "name": "csv-processor",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "mongodb": "^3.6.0",
+    "csvtojson": "^2.0.10"
+  }
+}

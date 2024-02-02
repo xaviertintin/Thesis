@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mongodb-backup
+spec:
+  template:
+    spec:
+      containers:
+        - name: mongo-backup
+          image: mongo:latest # Utilizando la imagen oficial de MongoDB
+          command: ["mongodump"]
+          args: ["--uri=mongodb://mongo-db:27017/collect", "--out=/backup"]
+          volumeMounts:
+            - name: backup-volume
+              mountPath: /backup
+      volumes:
+        - name: backup-volume
+          persistentVolumeClaim:
+            claimName: mongo-backup-pvc
+      restartPolicy: OnFailure
