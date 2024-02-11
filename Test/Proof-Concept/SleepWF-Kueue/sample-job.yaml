@@ -6,9 +6,6 @@ metadata:
   labels:
     kueue.x-k8s.io/queue-name: local-queue
 spec:
-  parallelism: 1
-  completions: 1
-  suspend: true
   template:
     spec:
       containers:
