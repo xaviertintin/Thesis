@@ -17,7 +17,7 @@ class KubernetesJobManager:
             "apiVersion": "batch/v1",
             "metadata": {
                 "name": backend_job_id.lower(),  # Ensure lowercase for name
-                "labels": {"kueue.x-k8s.io/queue-name": "local-queue"},
+                "labels": {"kueue.x-k8s.io/queue-name": "mrhackin-queue"},
             },
             "spec": {
                 "template": {

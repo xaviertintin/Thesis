@@ -1,0 +1,39 @@
+# Run Batch Job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: batch-
+  labels:
+    kueue.x-k8s.io/queue-name: local-queue-batch
+spec:
+  template:
+    spec:
+      containers:
+      - name: dummy-job
+        image: gcr.io/k8s-staging-perf-tests/sleep:latest
+        args: ["10s"]
+        resources:
+          requests:
+            cpu: 1
+            memory: "200Mi"
+      restartPolicy: Never
+---
+# Run Job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: job-
+  labels:
+    kueue.x-k8s.io/queue-name: local-queue-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: dummy-job
+        image: gcr.io/k8s-staging-perf-tests/sleep:latest
+        args: ["10s"]
+        resources:
+          requests:
+            cpu: 1
+            memory: "200Mi"
+      restartPolicy: Never
