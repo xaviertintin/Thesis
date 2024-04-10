@@ -1,0 +1,38 @@
+# sample-job.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: sleepwf-reana-
+  labels:
+    kueue.x-k8s.io/queue-name: user-queue
+spec:
+  # ttlSecondsAfterFinished: 0
+  parallelism: 1 
+  completions: 1 
+  suspend: true
+  template:
+    spec:
+      containers:
+        - name: create
+          image: riga/py-sci
+          command: ["/bin/bash", "-c"]
+          args:
+            [
+              "touch /data/results/outputfile.txt;
+              sh /data/code/script1.sh >> /data/results/outputfile.txt;
+              sh /data/code/script2.sh /data/data/input.txt /data/results/outputfile.txt"
+            ]
+          resources:
+            requests:
+              memory: "150Mi"
+            limits:
+              memory: "150Mi"
+          volumeMounts:
+          - mountPath: "/data"
+            name: pv-storage
+      restartPolicy: Never
+      volumes:
+      - name: pv-storage
+        persistentVolumeClaim:
+          claimName: local-pvc
+          readOnly: false
