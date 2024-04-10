@@ -1,0 +1,51 @@
+{{- if .Values.debug.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "reana.prefix" . }}-mail
+  namespace: {{ .Release.Namespace }}
+spec:
+  type: "NodePort"
+  ports:
+  - port: 30025
+    targetPort: 25
+    nodePort: 30025
+    name: "smtp"
+    protocol: TCP
+  - port: 32580
+    targetPort: 80
+    nodePort: 32580
+    name: "ui"
+    protocol: TCP
+  selector:
+    app: {{ include "reana.prefix" . }}-mail
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "reana.prefix" . }}-mail
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ if .Values.maintenance.enabled -}} 0 {{- else -}} 1 {{- end }}
+  selector:
+    matchLabels:
+      app: {{ include "reana.prefix" . }}-mail
+  template:
+    metadata:
+      labels:
+        app: {{ include "reana.prefix" . }}-mail
+    spec:
+      containers:
+      - name: maildev
+        image: docker.io/maildev/maildev:1.1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        - containerPort: 25
+      {{- if .Values.node_label_infrastructure }}
+      {{- $full_label := split "=" .Values.node_label_infrastructure }}
+      nodeSelector:
+        {{ $full_label._0 }}: {{ $full_label._1 }}
+      {{- end }}
+{{- end }}

@@ -1,0 +1,44 @@
+{{- if .Values.components.reana_ui.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "reana.prefix" . }}-ui
+  namespace: {{ .Release.Namespace }}
+spec:
+  type: "ClusterIP"
+  ports:
+  - port: 80
+    targetPort: 80
+    name: "http"
+    protocol: TCP
+  selector:
+    app: {{ include "reana.prefix" . }}-ui
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "reana.prefix" . }}-ui
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ if .Values.maintenance.enabled -}} 0 {{- else -}} 1 {{- end }}
+  selector:
+    matchLabels:
+      app: {{ include "reana.prefix" . }}-ui
+  template:
+    metadata:
+      labels:
+        app: {{ include "reana.prefix" . }}-ui
+    spec:
+      containers:
+      - name: ui
+        image: {{ .Values.components.reana_ui.image }}
+        imagePullPolicy: {{ .Values.components.reana_ui.imagePullPolicy }}
+        ports:
+        - containerPort: 80
+      {{- if .Values.node_label_infrastructure }}
+      {{- $full_label := split "=" .Values.node_label_infrastructure }}
+      nodeSelector:
+        {{ $full_label._0 }}: {{ $full_label._1 }}
+      {{- end }}
+{{- end }}
