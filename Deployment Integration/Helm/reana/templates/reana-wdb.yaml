@@ -1,0 +1,50 @@
+{{- if .Values.debug.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "reana.prefix" . }}-wdb
+  namespace: {{ .Release.Namespace }}
+spec:
+  type: "NodePort"
+  ports:
+  - port: 19840
+    targetPort: 19840
+    name: "socket"
+    protocol: TCP
+  - port: 1984
+    targetPort: 1984
+    nodePort: 31984
+    name: "ui"
+    protocol: TCP
+  selector:
+    app: {{ include "reana.prefix" . }}-wdb
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "reana.prefix" . }}-wdb
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ if .Values.maintenance.enabled -}} 0 {{- else -}} 1 {{- end }}
+  selector:
+    matchLabels:
+      app: {{ include "reana.prefix" . }}-wdb
+  template:
+    metadata:
+      labels:
+        app: {{ include "reana.prefix" . }}-wdb
+    spec:
+      containers:
+      - name: wdb
+        image: docker.io/kozea/wdb:3.2.5
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 1984
+        - containerPort: 19840
+      {{- if .Values.node_label_infrastructure }}
+      {{- $full_label := split "=" .Values.node_label_infrastructure }}
+      nodeSelector:
+        {{ $full_label._0 }}: {{ $full_label._1 }}
+      {{- end }}
+{{- end }}

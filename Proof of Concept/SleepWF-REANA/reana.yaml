@@ -17,15 +17,12 @@ workflow:
         environment: "riga/py-sci"
         kubernetes_memory_limit: '256Mi'
         commands:
-          - mkdir results/
-          - chmod +x "$script1"
-          - sh "$script1" >> "$output"
+          - sleep 10
       - name: append
         environment: "riga/py-sci"
         kubernetes_memory_limit: '256Mi'
         commands:
-          - chmod +x "$script2"
-          - sh "$script2" "$inputData" "$output"
+          - sleep 10
 outputs:
   files:
     - results/outputfile.txt
