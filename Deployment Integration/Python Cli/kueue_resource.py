@@ -1,4 +1,11 @@
 import yaml
+import subprocess
+
+def format_quota_value(value):
+    return f"{value}m"
+
+def format_memory_quota_value(value):
+    return f"{value}Mi"
 
 def get_number_from_user(prompt):
     while True:
@@ -13,6 +20,17 @@ def format_float_value(value):
         return str(int(value))
     else:
         return str(value)
+    
+def apply_yaml(filename):
+    print("Generated YAML file:")
+    with open(filename, 'r') as file:
+        print(file.read())
+    
+    confirm = input("Do you want to apply this YAML file? (yes/no): ").strip().lower()
+    if confirm == "yes":
+        subprocess.run(["kubectl", "apply", "-f", filename])
+    else:
+        print("YAML file not applied.")
 
 def generate_yaml(filename, totalCPU_wf, maxCPU_wf, totalMemory_wf, maxMemory_wf, totalCPU_job, maxCPU_job, totalMemory_job, maxMemory_job):
     yaml_data = [
@@ -34,13 +52,13 @@ def generate_yaml(filename, totalCPU_wf, maxCPU_wf, totalMemory_wf, maxMemory_wf
                                 "resources": [
                                     {
                                         "name": "cpu",
-                                        "nominalQuota": totalCPU_wf,
-                                        "borrowingLimit": maxCPU_wf
+                                        "nominalQuota": format_quota_value(totalCPU_wf),
+                                        "borrowingLimit": format_quota_value(maxCPU_wf)
                                     },
                                     {
                                         "name": "memory",
-                                        "nominalQuota": totalMemory_wf,
-                                        "borrowingLimit": maxMemory_wf
+                                        "nominalQuota": format_memory_quota_value(totalMemory_wf),
+                                        "borrowingLimit": format_memory_quota_value(maxMemory_wf)
                                     }
                                 ]
                             }
@@ -67,13 +85,13 @@ def generate_yaml(filename, totalCPU_wf, maxCPU_wf, totalMemory_wf, maxMemory_wf
                                 "resources": [
                                     {
                                         "name": "cpu",
-                                        "nominalQuota": totalCPU_job,
-                                        "borrowingLimit": maxCPU_job
+                                        "nominalQuota": format_quota_value(totalCPU_job),
+                                        "borrowingLimit": format_quota_value(maxCPU_job)
                                     },
                                     {
                                         "name": "memory",
-                                        "nominalQuota": totalMemory_job,
-                                        "borrowingLimit": maxMemory_job
+                                        "nominalQuota": format_memory_quota_value(totalMemory_job),
+                                        "borrowingLimit": format_memory_quota_value(maxMemory_job)
                                     }
                                 ]
                             }
@@ -171,3 +189,6 @@ if __name__ == "__main__":
 
     # Generate YAML
     generate_yaml("cluster_quotas.yaml", totalCPU_wf, maxCPU_wf, totalMemory_wf, maxMemory_wf, totalCPU_job, maxCPU_job, totalMemory_job, maxMemory_job)
+
+    # Apply YAML
+    apply_yaml("cluster_quotas.yaml")
