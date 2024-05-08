@@ -35,3 +35,27 @@ spec:
         borrowingLimit: 0 # blocks this from borrowing resources from another ClusterQueue
       - name: "memory"
         nominalQuota: 7Gi
+---
+# Run Batch Job
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: LocalQueue
+metadata:
+  namespace: "default"
+  name: "local-queue-batch"
+spec:
+  clusterQueue: "cluster-queue-reana-run-batch"
+---
+# Run Job
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: LocalQueue
+metadata:
+  namespace: "default"
+  name: "local-queue-job"
+spec:
+  clusterQueue: "cluster-queue-reana-run-job"
+---
+# default-flavor.yaml
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: ResourceFlavor
+metadata:
+  name: "default-flavor"

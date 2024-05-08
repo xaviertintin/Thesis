@@ -4,7 +4,7 @@ kind: Job
 metadata:
   generateName: batch-
   labels:
-    kueue.x-k8s.io/queue-name: batch-queue-batch
+    kueue.x-k8s.io/queue-name: local-queue-batch
 spec:
   template:
     spec:

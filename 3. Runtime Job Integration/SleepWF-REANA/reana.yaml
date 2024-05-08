@@ -1,0 +1,16 @@
+version: 0.6.0
+workflow:
+  type: serial
+  specification:
+    steps: 
+      - name: create
+        environment: "riga/py-sci"
+        kubernetes_memory_limit: '256Mi'
+        commands:
+          - sleep 40
+          - sleep 40
+      - name: append
+        environment: "riga/py-sci"
+        kubernetes_memory_limit: '256Mi'
+        commands:
+          - sleep 40

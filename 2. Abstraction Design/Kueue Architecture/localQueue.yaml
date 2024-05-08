@@ -3,7 +3,7 @@ apiVersion: kueue.x-k8s.io/v1beta1
 kind: LocalQueue
 metadata:
   namespace: "default"
-  name: "batch-queue-batch"
+  name: "local-queue-batch"
 spec:
   clusterQueue: "cluster-queue-reana-run-batch"
 ---
