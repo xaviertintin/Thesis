@@ -12,7 +12,7 @@ spec:
     - name: "default-flavor"
       resources:
       - name: "cpu"
-        nominalQuota: 2
+        nominalQuota: 3
         borrowingLimit: 0 # blocks this from borrowing resources from another ClusterQueue
       - name: "memory"
         nominalQuota: 4Gi
@@ -31,10 +31,10 @@ spec:
     - name: "default-flavor"
       resources:
       - name: "cpu"
-        nominalQuota: 5
+        nominalQuota: 3
         borrowingLimit: 0 # blocks this from borrowing resources from another ClusterQueue
       - name: "memory"
-        nominalQuota: 7Gi
+        nominalQuota: 4Gi
 ---
 # Run Batch Job
 apiVersion: kueue.x-k8s.io/v1beta1
