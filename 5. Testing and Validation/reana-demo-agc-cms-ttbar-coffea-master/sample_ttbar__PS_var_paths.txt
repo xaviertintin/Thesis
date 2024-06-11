@@ -1,0 +1,15 @@
+root://eospublic.cern.ch//eos/opendata/cms/upload/agc/1.0.0//TT_TuneEE5C_13TeV-powheg-herwigpp/cmsopendata2015_ttbar_19999_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_10000_0000.root
+root://eospublic.cern.ch//eos/opendata/cms/upload/agc/1.0.0//TT_TuneEE5C_13TeV-powheg-herwigpp/cmsopendata2015_ttbar_19999_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_10000_0001.root
+root://eospublic.cern.ch//eos/opendata/cms/upload/agc/1.0.0//TT_TuneEE5C_13TeV-powheg-herwigpp/cmsopendata2015_ttbar_19999_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_10000_0002.root
+root://eospublic.cern.ch//eos/opendata/cms/upload/agc/1.0.0//TT_TuneEE5C_13TeV-powheg-herwigpp/cmsopendata2015_ttbar_19999_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_10000_0003.root
+root://eospublic.cern.ch//eos/opendata/cms/upload/agc/1.0.0//TT_TuneEE5C_13TeV-powheg-herwigpp/cmsopendata2015_ttbar_19999_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_10000_0004.root
+root://eospublic.cern.ch//eos/opendata/cms/upload/agc/1.0.0//TT_TuneEE5C_13TeV-powheg-herwigpp/cmsopendata2015_ttbar_19999_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_10000_0005.root
+root://eospublic.cern.ch//eos/opendata/cms/upload/agc/1.0.0//TT_TuneEE5C_13TeV-powheg-herwigpp/cmsopendata2015_ttbar_19999_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_10000_0006.root
+root://eospublic.cern.ch//eos/opendata/cms/upload/agc/1.0.0//TT_TuneEE5C_13TeV-powheg-herwigpp/cmsopendata2015_ttbar_19999_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_10000_0007.root
+root://eospublic.cern.ch//eos/opendata/cms/upload/agc/1.0.0//TT_TuneEE5C_13TeV-powheg-herwigpp/cmsopendata2015_ttbar_19999_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_10000_0008.root
+root://eospublic.cern.ch//eos/opendata/cms/upload/agc/1.0.0//TT_TuneEE5C_13TeV-powheg-herwigpp/cmsopendata2015_ttbar_19999_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_10000_0009.root
+root://eospublic.cern.ch//eos/opendata/cms/upload/agc/1.0.0//TT_TuneEE5C_13TeV-powheg-herwigpp/cmsopendata2015_ttbar_19999_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_10000_0010.root
+root://eospublic.cern.ch//eos/opendata/cms/upload/agc/1.0.0//TT_TuneEE5C_13TeV-powheg-herwigpp/cmsopendata2015_ttbar_19999_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_10000_0011.root
+root://eospublic.cern.ch//eos/opendata/cms/upload/agc/1.0.0//TT_TuneEE5C_13TeV-powheg-herwigpp/cmsopendata2015_ttbar_19999_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_10000_0012.root
+root://eospublic.cern.ch//eos/opendata/cms/upload/agc/1.0.0//TT_TuneEE5C_13TeV-powheg-herwigpp/cmsopendata2015_ttbar_19999_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_10000_0013.root
+root://eospublic.cern.ch//eos/opendata/cms/upload/agc/1.0.0//TT_TuneEE5C_13TeV-powheg-herwigpp/cmsopendata2015_ttbar_19999_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_10000_0014.root
