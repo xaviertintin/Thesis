@@ -1,4 +1,4 @@
-max_files_per_sample = 10
+max_files_per_sample = 2
 download_sleep = 0
 
 def get_samples():
@@ -92,7 +92,7 @@ rule merge_histograms:
     resources:
         kubernetes_memory_limit="256Mi"
     input:
-        expand("histograms/histograms_{sample}.root", sample=get_samples())
+        expand(get_samples())
     output:
         "results/histograms_merged.root"
     shell:
