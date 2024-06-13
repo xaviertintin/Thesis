@@ -1,9 +1,12 @@
-max_files_per_sample = 2
+max_files_per_sample = 10
 download_sleep = 0
 
 def get_samples():
     "Return list of the samples."
-    samples = ["ttbar_nominal", "ttbar_ps", "ttbar_another"]
+    samples = []
+    fd = open(f"inputs/samples.txt")
+    samples = fd.read().splitlines()
+    fd.close()
     return samples
 
 rule all:
@@ -92,8 +95,8 @@ rule merge_histograms:
     resources:
         kubernetes_memory_limit="256Mi"
     input:
-        expand(get_samples())
+        expand("histograms/histograms_ttbar_another.root")
     output:
-        "results/histograms_merged.txt"
+        "results/histograms_merged.root"
     shell:
         "mkdir -p results && cat {input} > {output}"
