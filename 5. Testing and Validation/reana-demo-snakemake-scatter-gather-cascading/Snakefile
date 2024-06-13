@@ -3,10 +3,7 @@ download_sleep = 0
 
 def get_samples():
     "Return list of the samples."
-    samples = []
-    fd = open(f"inputs/samples.txt")
-    samples = fd.read().splitlines()
-    fd.close()
+    samples = ["ttbar_nominal", "ttbar_ps", "ttbar_another"]
     return samples
 
 rule all:
