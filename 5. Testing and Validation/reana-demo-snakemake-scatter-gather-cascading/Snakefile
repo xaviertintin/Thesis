@@ -1,4 +1,4 @@
-max_files_per_sample = 250
+max_files_per_sample = 10
 download_sleep = 0
 
 def get_samples():

@@ -6,3 +6,5 @@ inputs:
 workflow:
   type: snakemake
   file: Snakefile
+options:
+    --latency-wait: 300
