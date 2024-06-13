@@ -94,6 +94,6 @@ rule merge_histograms:
     input:
         expand(get_samples())
     output:
-        "results/histograms_merged.root"
+        "results/histograms_merged.txt"
     shell:
         "mkdir -p results && cat {input} > {output}"
