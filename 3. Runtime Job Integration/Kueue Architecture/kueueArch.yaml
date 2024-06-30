@@ -11,11 +11,10 @@ spec:
     flavors:
     - name: "default-flavor"
       resources:
-      - name: "cpu"
-        nominalQuota: 9000m
-        borrowingLimit: 0 # blocks this from borrowing resources from another ClusterQueue
-      - name: "memory"
-        nominalQuota: 18000Mi
+        - name: "cpu"
+          nominalQuota: 4000m
+        - name: "memory"
+          nominalQuota: 14305Mi
 ---
 # Run Job
 apiVersion: kueue.x-k8s.io/v1beta1
@@ -30,11 +29,10 @@ spec:
     flavors:
     - name: "default-flavor"
       resources:
-      - name: "cpu"
-        nominalQuota: 9000m
-        borrowingLimit: 0 # blocks this from borrowing resources from another ClusterQueue
-      - name: "memory"
-        nominalQuota: 18000Mi
+        - name: "cpu"
+          nominalQuota: 8000m
+        - name: "memory"
+          nominalQuota: 28610Mi
 ---
 # Run Batch Job
 apiVersion: kueue.x-k8s.io/v1beta1

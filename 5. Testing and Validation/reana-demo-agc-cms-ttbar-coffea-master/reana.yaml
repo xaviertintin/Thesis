@@ -16,7 +16,7 @@ inputs:
 workflow:
   type: snakemake
   resources:
-    kerberos: true
+    kerberos: false
   file: Snakefile
 outputs:
   files:

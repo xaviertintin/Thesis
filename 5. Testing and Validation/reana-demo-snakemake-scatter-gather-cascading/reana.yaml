@@ -1,8 +1,0 @@
-inputs:
-  directories:
-    - inputs
-  files:
-    - Snakefile
-workflow:
-  type: snakemake
-  file: Snakefile

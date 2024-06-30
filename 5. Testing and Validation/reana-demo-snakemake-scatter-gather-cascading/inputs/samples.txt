@@ -1,3 +1,0 @@
-ttbar_nominal
-ttbar_ps
-ttbar_another
